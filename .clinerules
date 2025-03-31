@@ -1,0 +1,21 @@
+# Cline Rules for Assessly Project
+
+*This file captures project-specific intelligence, patterns, and user preferences learned over time.*
+
+## Initial Setup
+*   Memory Bank initialized on 3/31/2025, 9:29:14 PM (Asia/Karachi, UTC+5:00).
+*   Project confirmed as a Laravel application using React/Inertia.js (PRD 5.1).
+*   **UI Framework Discrepancy:** Initial files suggest Tailwind CSS, but PRD (5.1) specifies Ant Design v5. This needs resolution. See `activeContext.md` and `techContext.md`.
+
+## Key Patterns & Preferences
+*   **Source of Truth:** The Product Requirements Document (PRD) provided on 3/31/2025 is the primary source for requirements and features. Memory Bank files should reflect the PRD.
+*   **Memory Bank Workflow:** Updates require reviewing all core files (`projectbrief.md`, `productContext.md`, `activeContext.md`, `systemPatterns.md`, `techContext.md`, `progress.md`) and `.clinerules`. `activeContext.md` and `progress.md` are key for tracking current state.
+*   [To be documented as discovered]
+
+## Tool Usage Notes
+*   [To be documented as discovered]
+
+## Known Challenges/Workarounds
+*   **UI Framework Conflict:** PRD specifies Ant Design v5, while existing configuration files (`tailwind.config.js`, etc.) indicate Tailwind CSS setup. This must be clarified before UI development begins. (See `activeContext.md`).
+*   **Open Questions (PRD 9):** Decisions needed on deployment model (SaaS vs. self-hosted), code execution environment, and data retention policies.
+*   [To be documented as discovered]
