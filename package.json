@@ -4,6 +4,7 @@
     "scripts": {
         "build": "vite build",
         "build:ssr": "vite build && vite build --ssr",
+        "tree": "tree -i -f --gitignore > tree.txt",
         "dev": "vite",
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",

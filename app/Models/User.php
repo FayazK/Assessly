@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -21,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -44,5 +47,75 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    
+    /**
+     * Check if the user is an admin.
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+    
+    /**
+     * Check if the user is a candidate.
+     *
+     * @return bool
+     */
+    public function isCandidate(): bool
+    {
+        return $this->role === 'candidate';
+    }
+    
+    /**
+     * Get the candidate profile associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function candidateProfile(): HasOne
+    {
+        return $this->hasOne(CandidateProfile::class);
+    }
+    
+    /**
+     * Get the questions created by the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function questions(): HasMany
+    {
+        return $this->hasMany(Question::class, 'creator_id');
+    }
+    
+    /**
+     * Get the interviews created by the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function createdInterviews(): HasMany
+    {
+        return $this->hasMany(Interview::class, 'creator_id');
+    }
+    
+    /**
+     * Get the candidate interviews for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function candidateInterviews(): HasMany
+    {
+        return $this->hasMany(CandidateInterview::class, 'candidate_id');
+    }
+    
+    /**
+     * Get the response evaluations done by the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function responseEvaluations(): HasMany
+    {
+        return $this->hasMany(ResponseEvaluation::class, 'evaluator_id');
     }
 }
