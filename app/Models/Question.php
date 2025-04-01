@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Builder;
+use Spatie\Tags\HasTags;
+use Spatie\Tags\Tag;
 
 class Question extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTags;
 
     /**
      * The attributes that are mass assignable.
@@ -38,22 +41,48 @@ class Question extends Model
 
     /**
      * Get the categories that the question belongs to.
+     * This now uses Spatie Tags with type 'category'.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function categories(): BelongsToMany
+    public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->tagsWithType('category');
     }
 
     /**
      * Get the tags that the question belongs to.
+     * This now uses Spatie Tags with type 'tag'.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function tags(): BelongsToMany
+    public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->tagsWithType('tag');
+    }
+    
+    /**
+     * Scope a query to only include questions with any of the given categories.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|array $categories
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithCategories(Builder $query, $categories): Builder
+    {
+        return $query->withAnyTags($categories, 'category');
+    }
+    
+    /**
+     * Scope a query to only include questions with any of the given tags.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|array $tags
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithTags(Builder $query, $tags): Builder
+    {
+        return $query->withAnyTags($tags, 'tag');
     }
 
     /**

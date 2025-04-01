@@ -1,4 +1,5 @@
 .
+./README-TAGS.md
 ./app
 ./app/Http
 ./app/Http/Controllers
@@ -27,7 +28,7 @@
 ./app/Models/CandidateInterview.php
 ./app/Models/CandidateProfile.php
 ./app/Models/CandidateResponse.php
-./app/Models/Category.php
+./app/Models/CategoryHierarchy.php
 ./app/Models/CodingDetail.php
 ./app/Models/Interview.php
 ./app/Models/InterviewResult.php
@@ -36,11 +37,15 @@
 ./app/Models/Question.php
 ./app/Models/ResponseEvaluation.php
 ./app/Models/ShortAnswerDetail.php
-./app/Models/Tag.php
+./app/Models/Spatie
+./app/Models/Spatie/Tag.php
 ./app/Models/TrueFalseDetail.php
 ./app/Models/User.php
 ./app/Providers
 ./app/Providers/AppServiceProvider.php
+./app/Providers/TagServiceProvider.php
+./app/Services
+./app/Services/TagService.php
 ./artisan
 ./assessly.code-workspace
 ./bootstrap
@@ -69,14 +74,13 @@
 ./database/migrations/0001_01_01_000000_create_users_table.php
 ./database/migrations/0001_01_01_000001_create_cache_table.php
 ./database/migrations/0001_01_01_000002_create_jobs_table.php
+./database/migrations/2025_04_01_210322_create_tag_tables.php
+./database/migrations/2025_04_01_210600_create_category_hierarchies_table.php
 ./database/migrations/assessly
 ./database/migrations/assessly/2025_04_01_000001_add_role_to_users_table.php
 ./database/migrations/assessly/2025_04_01_000002_create_candidate_profiles_table.php
-./database/migrations/assessly/2025_04_01_000003_create_categories_table.php
-./database/migrations/assessly/2025_04_01_000004_create_tags_table.php
 ./database/migrations/assessly/2025_04_01_000005_create_questions_table.php
 ./database/migrations/assessly/2025_04_01_000006_create_question_details_tables.php
-./database/migrations/assessly/2025_04_01_000007_create_question_relationships_tables.php
 ./database/migrations/assessly/2025_04_01_000008_create_interviews_table.php
 ./database/migrations/assessly/2025_04_01_000009_create_interview_sections_table.php
 ./database/migrations/assessly/2025_04_01_000010_create_section_question_table.php
@@ -230,4 +234,4 @@
 ./vite.config.js
 ./yarn.lock
 
-55 directories, 176 files
+57 directories, 178 files
