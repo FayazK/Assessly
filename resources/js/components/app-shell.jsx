@@ -1,15 +1,11 @@
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { useState } from 'react';
 
-interface AppShellProps {
-    children: React.ReactNode;
-    variant?: 'header' | 'sidebar';
-}
 
-export function AppShell({ children, variant = 'header' }: AppShellProps) {
+export function AppShell({ children, variant = 'header' }) {
     const [isOpen, setIsOpen] = useState(() => (typeof window !== 'undefined' ? localStorage.getItem('sidebar') !== 'false' : true));
 
-    const handleSidebarChange = (open: boolean) => {
+    const handleSidebarChange = (open) => {
         setIsOpen(open);
 
         if (typeof window !== 'undefined') {
