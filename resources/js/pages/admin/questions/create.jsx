@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,6 +15,18 @@ import HeadingSmall from '@/components/heading-small';
 import InputError from '@/components/input-error';
 
 // Import question type specific form components
+
+const breadcrumbs = [
+  {
+    title: 'Dashboard', href: route('dashboard'),
+  },
+  {
+    title: 'Questions', href: route('admin.questions.index'),
+  },
+  {
+    title: 'Create', href: route('admin.questions.create'),
+  },
+];
 import MCQForm from '@/components/questions/MCQForm';
 import TrueFalseForm from '@/components/questions/TrueFalseForm';
 import ShortAnswerForm from '@/components/questions/ShortAnswerForm';
@@ -100,25 +111,10 @@ const CreateQuestion = ({ categories, tags }) => {
   };
 
   return (
-    <AppLayout>
+    <AppLayout breadcrumbs={breadcrumbs}>
       <Head title="Create Question" />
 
-      <div className="container mx-auto py-6">
-        <Breadcrumb className="mb-6">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink as={Link} href={route('dashboard')}>Dashboard</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink as={Link} href={route('admin.questions.index')}>Questions</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Create</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+      <div className="p-4 space-y-4">
 
         <div className="flex justify-between items-center mb-6">
           <Heading>Create New Question</Heading>

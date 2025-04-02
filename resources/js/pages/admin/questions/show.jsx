@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Head, Link, router } from '@inertiajs/react';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -10,6 +9,18 @@ import AppLayout from '@/layouts/app-layout';
 import * as LucideIcons from 'lucide-react';
 import Heading from '@/components/heading';
 import HeadingSmall from '@/components/heading-small';
+
+const breadcrumbs = (question) => [
+  {
+    title: 'Dashboard', href: route('dashboard'),
+  },
+  {
+    title: 'Questions', href: route('admin.questions.index'),
+  },
+  {
+    title: 'View', href: route('admin.questions.show', question.id),
+  },
+];
 
 const QuestionTypeIcon = ({ type }) => {
   const iconMap = {
@@ -126,25 +137,10 @@ const ShowQuestion = ({ question }) => {
   };
 
   return (
-    <AppLayout>
+    <AppLayout breadcrumbs={breadcrumbs(question)}>
       <Head title={`Question: ${question.title}`} />
 
-      <div className="container mx-auto py-6">
-        <Breadcrumb className="mb-6">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink as={Link} href={route('dashboard')}>Dashboard</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink as={Link} href={route('admin.questions.index')}>Questions</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>View</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+      <div className="p-4 space-y-4">
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <Heading>{question.title}</Heading>

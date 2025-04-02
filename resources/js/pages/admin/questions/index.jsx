@@ -1,8 +1,5 @@
 import React, {useState} from 'react';
 import {Head, Link, router} from '@inertiajs/react';
-import {
-    Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator
-} from '@/components/ui/breadcrumb';
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
 import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
@@ -15,6 +12,15 @@ import AppLayout from '@/layouts/app-layout';
 import * as LucideIcons from 'lucide-react';
 import Heading from '@/components/heading';
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '@/components/ui/dropdown-menu';
+
+const breadcrumbs = [
+  {
+    title: 'Dashboard', href: route('dashboard'),
+  },
+  {
+    title: 'Questions', href: route('admin.questions.index'),
+  },
+];
 
 const QuestionTypeIcon = ({type}) => {
     const iconMap = {
@@ -72,21 +78,10 @@ const QuestionList = ({questions, filters, categories, tags}) => {
         setDeleteDialogOpen(true);
     };
 
-    return (<AppLayout>
+    return (<AppLayout breadcrumbs={breadcrumbs}>
         <Head title="Questions Management"/>
 
-        <div className="container mx-auto py-6">
-            <Breadcrumb className="mb-6">
-                <BreadcrumbList>
-                    <BreadcrumbItem>
-                        <BreadcrumbLink as={Link} href={route('dashboard')}>Dashboard</BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator/>
-                    <BreadcrumbItem>
-                        <BreadcrumbPage>Questions</BreadcrumbPage>
-                    </BreadcrumbItem>
-                </BreadcrumbList>
-            </Breadcrumb>
+        <div className="p-4 space-y-4">
 
             <div className="flex justify-between items-center mb-6">
                 <Heading>Questions</Heading>

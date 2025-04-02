@@ -1,6 +1,5 @@
 import React from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,6 +12,18 @@ import Heading from '@/components/heading';
 import InputError from '@/components/input-error';
 
 // Import question type specific form components
+
+const breadcrumbs = (question) => [
+  {
+    title: 'Dashboard', href: route('dashboard'),
+  },
+  {
+    title: 'Questions', href: route('admin.questions.index'),
+  },
+  {
+    title: 'Edit', href: route('admin.questions.edit', question.id),
+  },
+];
 import MCQForm from '@/components/questions/MCQForm';
 import TrueFalseForm from '@/components/questions/TrueFalseForm';
 import ShortAnswerForm from '@/components/questions/ShortAnswerForm';
@@ -108,25 +119,10 @@ const EditQuestion = ({ question, categories, tags }) => {
   };
 
   return (
-    <AppLayout>
+    <AppLayout breadcrumbs={breadcrumbs(question)}>
       <Head title={`Edit Question: ${question.title}`} />
 
-      <div className="container mx-auto py-6">
-        <Breadcrumb className="mb-6">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink as={Link} href={route('dashboard')}>Dashboard</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink as={Link} href={route('admin.questions.index')}>Questions</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Edit</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+      <div className="p-4 space-y-4">
 
         <div className="flex justify-between items-center mb-6">
           <Heading>Edit Question</Heading>
