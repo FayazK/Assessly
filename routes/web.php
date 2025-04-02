@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\QuestionController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -17,6 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Admin routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('users', UserController::class)->except(['create', 'edit', 'show']);
+    Route::resource('questions', QuestionController::class);
 });
 
 require __DIR__.'/settings.php';

@@ -3,7 +3,7 @@ import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, HelpCircle, FileQuestion, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems = [
@@ -13,9 +13,14 @@ const mainNavItems = [
         icon: LayoutGrid,
     },
     {
+        title: 'Questions',
+        href: '/admin/questions',
+        icon: FileQuestion,
+    },
+    {
         title: 'Users',
         href: '/admin/users',
-        icon: LayoutGrid,
+        icon: Users,
     },
 ];
 
